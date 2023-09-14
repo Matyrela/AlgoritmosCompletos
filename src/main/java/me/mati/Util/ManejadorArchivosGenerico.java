@@ -91,5 +91,15 @@ public class ManejadorArchivosGenerico {
 			    }			    
 		    }
 		    return words.toArray(new String [0]);
-		 }	
+		 }
+
+    public static boolean existeArchivoOContenido(String s) {
+        File f = new File(s);
+        if(f.exists() && !f.isDirectory()) {
+            if(f.length() > 0){
+                return true;
+            }
+        }
+            return false;
+    }
 }

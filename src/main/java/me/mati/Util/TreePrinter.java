@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TreePrinter {
-    int padding = 2;
+    static int padding = 2;
 
-    private int indent(List<String> lines, int margin) {
+    private static int indent(List<String> lines, int margin) {
         if (margin >= 0) return margin;
         String spaces = " ".repeat(-margin);
         int i = 0;
@@ -19,7 +19,7 @@ public class TreePrinter {
         return 0;
     }
 
-    private List<String> merge(List<String> left, List<String> right) {
+    private static List<String> merge(List<String> left, List<String> right) {
         int minSize = Math.min(left.size(), right.size());
         int offset = 0;
         for (int i = 0; i < minSize; i++) {
@@ -35,9 +35,9 @@ public class TreePrinter {
         return left;
     }
 
-    private TElementoAB Root = null;
+    private static TElementoAB Root = null;
 
-    private List<String> buildLines(TElementoAVL node, int level) {
+    private static List<String> buildLines(TElementoAB node, int level) {
         if (node == null) return new ArrayList<>();
         List<String> lines = merge(buildLines(node.getHijoIzq(), level + 1), buildLines(node.getHijoDer(), level + 1));
         int half = String.valueOf(node.getEtiqueta()).length() / 2;
@@ -62,8 +62,8 @@ public class TreePrinter {
         return lines;
     }
 
-    public String print(TElementoAVL root) {
-        List<String> lines = buildLines(root, 1);
+    public static String print(TElementoAB root) {
+        List<String> lines = buildLines(root, 0);
         return String.join("\n", lines.subList(1, lines.size()));
     }
 }

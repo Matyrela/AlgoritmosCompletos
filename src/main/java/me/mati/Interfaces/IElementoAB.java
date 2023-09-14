@@ -1,4 +1,6 @@
-package me.mati.ArbolBB;
+package me.mati.Interfaces;
+
+import me.mati.ArbolBB.TElementoAB;
 
 public interface IElementoAB<T> {
 

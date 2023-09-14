@@ -1,47 +1,53 @@
 package me.mati.ArbolBB;
 
+import me.mati.Interfaces.IArbolBB;
+
 public class TArbolBB<T> implements IArbolBB<T> {
 
-    protected TElementoAB<T> raiz;
+    private TElementoAB<T> raiz;
 
     public TArbolBB() {
-        raiz = null;
+        setRaiz(null);
     }
 
-    public TElementoAB getRaiz() {
+    public TElementoAB<T> getRaiz() {
         return raiz;
+    }
+
+    public void setRaiz(TElementoAB<T> raiz) {
+        this.raiz = raiz;
     }
 
     @Override
     public boolean insertar(TElementoAB<T> unElemento) {
-        if (raiz == null) {
-            raiz = unElemento;
+        if (getRaiz() == null) {
+            setRaiz(unElemento);
             return true;
         }
-        return raiz.insertar(unElemento);
+        return getRaiz().insertar(unElemento);
     }
 
     public int insertarConNivel(TElementoAB<T> unElemento) {
-        if (raiz == null) {
-            raiz = unElemento;
+        if (getRaiz() == null) {
+            setRaiz(unElemento);
             return 0;
         }
         int cont = 0;
-        return raiz.insertarConNivel(cont, unElemento);
+        return getRaiz().insertarConNivel(cont, unElemento);
     }
 
     @Override
     public TElementoAB<T> buscar(Comparable unaEtiqueta) {
-        if(raiz != null){
-            return raiz.buscar(unaEtiqueta);
+        if(getRaiz() != null){
+            return getRaiz().buscar(unaEtiqueta);
         }
         return null;
     }
 
     @Override
     public String preOrden() {
-        if(raiz != null){
-            String resultado = raiz.preOrden();
+        if(getRaiz() != null){
+            String resultado = getRaiz().preOrden();
             return resultado.substring(0, resultado.length() - 4);
         }else {
             return "";
@@ -50,8 +56,8 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public String inOrden() {
-        if(raiz != null){
-            String resultado = raiz.inOrden();
+        if(getRaiz() != null){
+            String resultado = getRaiz().inOrden();
             return resultado.substring(0, resultado.length() - 4);
         }else {
             return "";
@@ -60,8 +66,8 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public String postOrden() {
-        if(raiz != null){
-            String resultado = raiz.postOrden();
+        if(getRaiz() != null){
+            String resultado = getRaiz().postOrden();
             return resultado.substring(0, resultado.length() - 4);
         }else {
             return "";
@@ -70,35 +76,35 @@ public class TArbolBB<T> implements IArbolBB<T> {
 
     @Override
     public void eliminar(Comparable unaEtiqueta) {
-        if(raiz != null){
-            raiz = raiz.eliminar(unaEtiqueta);
+        if(getRaiz() != null){
+            setRaiz(getRaiz().eliminar(unaEtiqueta));
         }
     }
 
     public int buscarNivel(Comparable unaEtiqueta) {
-        if(raiz != null){
-            return raiz.buscarNivel(unaEtiqueta);
+        if(getRaiz() != null){
+            return getRaiz().buscarNivel(unaEtiqueta);
         }
         return 0;
     }
 
     public int obtenerAltura(){
-        if(raiz != null){
-            return raiz.obtenerAltura();
+        if(getRaiz() != null){
+            return getRaiz().obtenerAltura();
         }
         return 0;
     }
 
     public int obtenerTamaño(){
-        if(raiz != null){
-            return raiz.obtenerTamaño();
+        if(getRaiz() != null){
+            return getRaiz().obtenerTamaño();
         }
         return 0;
     }
 
     public int obtenerCantidadHojas(){
-        if(raiz != null){
-            return raiz.obtenerCantidadHojas();
+        if(getRaiz() != null){
+            return getRaiz().obtenerCantidadHojas();
         }
         return 0;
     }

@@ -1,100 +1,44 @@
 package me.mati.ArbolAVL;
 
-import me.mati.ArbolBB.*;
+import me.mati.ArbolBB.TArbolBB;
 
-public class TArbolAVL<T> {
+public class TArbolAVL<T> extends TArbolBB<T> {
 
-    protected TElementoAVL<T> raiz;
+    private TElementoAVL<T> raiz;
 
     public TArbolAVL() {
-        raiz = null;
+        setRaiz(null);
     }
 
-    public TElementoAVL getRaiz() {
+    @Override
+    public TElementoAVL<T> getRaiz() {
         return raiz;
     }
 
-    public boolean insertar(TElementoAVL unElemento) {
-        if (raiz == null) {
-            raiz = unElemento;
+    public void setRaiz(TElementoAVL<T> raiz) {
+        this.raiz = raiz;
+    }
+
+    public boolean insertar(TElementoAVL<T> unElemento) {
+        if (getRaiz() == null) {
+            setRaiz(unElemento);
             return true;
         }
 
-        TElementoAVL temp = raiz.insertar(unElemento); // Llama a insertar en el nodo raíz
+        TElementoAVL<T> temp = getRaiz().insertar(unElemento);
 
-        if (temp != raiz) {
-            raiz = temp;
+        if (temp != getRaiz()) {
+            setRaiz(temp);
         }
 
         return true;
     }
 
 
-    public TElementoAVL<T> buscar(Comparable unaEtiqueta) {
-        if(raiz != null){
-            return raiz.buscar(unaEtiqueta);
-        }
-        return null;
-    }
-
-    public String preOrden() {
-        if(raiz != null){
-            String resultado = raiz.preOrden();
-            return resultado.substring(0, resultado.length() - 4);
-        }else {
-            return "";
-        }
-    }
-
-    public String inOrden() {
-        if(raiz != null){
-            String resultado = raiz.inOrden();
-            return resultado.substring(0, resultado.length() - 4);
-        }else {
-            return "";
-        }
-    }
-
-    public String postOrden() {
-        if(raiz != null){
-            String resultado = raiz.postOrden();
-            return resultado.substring(0, resultado.length() - 4);
-        }else {
-            return "";
-        }
-    }
-
+    @Override
     public void eliminar(Comparable unaEtiqueta) {
-        if(raiz != null){
-            raiz = raiz.eliminar(unaEtiqueta);
+        if(getRaiz() != null){
+            setRaiz(getRaiz().eliminar(unaEtiqueta));
         }
-    }
-
-    public int buscarNivel(Comparable unaEtiqueta) {
-        if(raiz != null){
-            return raiz.buscarNivel(unaEtiqueta);
-        }
-        return 0;
-    }
-
-    public int obtenerAltura(){
-        if(raiz != null){
-            return raiz.obtenerAltura();
-        }
-        return 0;
-    }
-
-    public int obtenerTamaño(){
-        if(raiz != null){
-            return raiz.obtenerTamaño();
-        }
-        return 0;
-    }
-
-    public int obtenerCantidadHojas(){
-        if(raiz != null){
-            return raiz.obtenerCantidadHojas();
-        }
-        return 0;
     }
 }

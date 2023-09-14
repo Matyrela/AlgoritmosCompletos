@@ -1,11 +1,13 @@
 package me.mati.ArbolBB;
 
+import me.mati.Interfaces.IElementoAB;
+
 public class TElementoAB<T> implements IElementoAB<T> {
 
-    private Comparable etiqueta;
-    private TElementoAB hijoIzq;
-    private TElementoAB hijoDer;
-    private T datos;
+    protected Comparable etiqueta;
+    protected TElementoAB hijoIzq;
+    protected TElementoAB hijoDer;
+    protected T datos;
 
     /**
      * @param unaEtiqueta
@@ -202,12 +204,12 @@ public class TElementoAB<T> implements IElementoAB<T> {
                 setHijoDer(getHijoDer().eliminar(unaEtiqueta));
             }
         }else {
-            return quitaElNodo(this);
+            return quitaElNodo();
         }
         return this;
     }
 
-    protected TElementoAB quitaElNodo(TElementoAB asd) {
+    protected TElementoAB quitaElNodo() {
         if(getHijoIzq() == null){
             return getHijoDer();
         }
@@ -215,8 +217,8 @@ public class TElementoAB<T> implements IElementoAB<T> {
             return getHijoIzq();
         }
 
-        TElementoAB elHijo = getHijoIzq();
-        TElementoAB elPadre = this;
+        TElementoAB<T> elHijo = getHijoIzq();
+        TElementoAB<T> elPadre = this;
         while (elHijo.getHijoDer() != null){
             elPadre = elHijo;
             elHijo = elHijo.getHijoDer();
@@ -235,19 +237,15 @@ public class TElementoAB<T> implements IElementoAB<T> {
         int AlturaDer = 0;
         int AlturaIzq = 0;
 
-        if (hijoDer != null)
-        {
+        if (hijoDer != null) {
             AlturaDer = hijoDer.obtenerAltura();
-            return 1 + Math.max(AlturaDer, AlturaIzq);
         }
 
-        if (hijoIzq != null)
-        {
+        if (hijoIzq != null) {
             AlturaIzq = hijoIzq.obtenerAltura();
-            return 1 + Math.max(AlturaDer, AlturaIzq);
         }
 
-        return Math.max(AlturaDer, AlturaIzq);
+        return 1 + Math.max(AlturaDer, AlturaIzq);
     }
 
     public int obtenerTamaño() {
