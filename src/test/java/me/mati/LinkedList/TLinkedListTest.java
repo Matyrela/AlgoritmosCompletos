@@ -1,12 +1,14 @@
 package me.mati.LinkedList;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TLinkedListTest {
 
     TLinkedList<Integer> lista = new TLinkedList<>();
 
-    @org.junit.jupiter.api.Test
+    @Test
     void insertarElemento() {
         lista.insertar(null);
         assertTrue(lista.esVacia());
@@ -25,7 +27,7 @@ class TLinkedListTest {
         assertEquals("1 -> 2", lista.imprimir());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void insertarEtiqueta() {
 
         lista.insertar(null,null);
@@ -43,7 +45,7 @@ class TLinkedListTest {
         assertEquals("1 -> 2", lista.imprimir());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void buscar() {
         lista.insertar(1, null);
         lista.insertar(2, null);
@@ -56,7 +58,7 @@ class TLinkedListTest {
         assertNull(lista.buscar(null));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void eliminar() {
         lista.insertar(1, null);
         lista.insertar(2, null);
@@ -69,7 +71,7 @@ class TLinkedListTest {
         assertFalse(lista.eliminar(null));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void imprimir() {
         lista.insertar(1, null);
         lista.insertar(2, null);
@@ -78,7 +80,7 @@ class TLinkedListTest {
         assertEquals("1 -> 2 -> 3", lista.imprimir());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void testImprimir() {
         lista.insertar(1, null);
         lista.insertar(2, null);
@@ -91,7 +93,7 @@ class TLinkedListTest {
         assertEquals("1 -> 2 -> 3", lista.imprimir(null));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void cantElementos() {
         lista.insertar(1, null);
         lista.insertar(2, null);
@@ -118,7 +120,34 @@ class TLinkedListTest {
         assertEquals(0, lista.cantElementos());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    void cantElementosON() {
+        lista.insertar(1, null);
+        lista.insertar(2, null);
+        lista.insertar(3, null);
+
+        assertEquals(3, lista.cantElementosON());
+
+        lista.eliminar(2);
+        assertEquals(2, lista.cantElementosON());
+
+        lista.eliminar(1);
+        assertEquals(1, lista.cantElementosON());
+
+        lista.eliminar(null);
+        assertEquals(1, lista.cantElementosON());
+
+        lista.eliminar(3);
+        assertEquals(0, lista.cantElementosON());
+
+        lista.eliminar(3);
+        assertEquals(0, lista.cantElementosON());
+
+        lista.insertar(null);
+        assertEquals(0, lista.cantElementosON());
+    }
+
+    @Test
     void esVacia() {
         assertTrue(lista.esVacia());
 
@@ -132,7 +161,7 @@ class TLinkedListTest {
         assertTrue(lista.esVacia());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void setPrimero() {
         lista.insertar(1, null);
         lista.insertar(2, null);
@@ -148,7 +177,7 @@ class TLinkedListTest {
         assertEquals("3 -> 1 -> 2", lista.imprimir());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void testToString() {
         lista.insertar(1, null);
         lista.insertar(2, null);

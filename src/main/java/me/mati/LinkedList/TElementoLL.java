@@ -39,12 +39,12 @@ public class TElementoLL<T> implements IElementoLL<T> {
 
     @Override
     public void imprimir() {
-
+        System.out.println(getDato().toString());
     }
 
     @Override
     public void imprimirEtiqueta() {
-
+        System.out.println(getEtiqueta());
     }
 
     @Override
@@ -54,6 +54,7 @@ public class TElementoLL<T> implements IElementoLL<T> {
 
     public void setEtiqueta(Comparable etiqueta) {
         if(etiqueta == null) return;
+
         this.etiqueta = etiqueta;
     }
 

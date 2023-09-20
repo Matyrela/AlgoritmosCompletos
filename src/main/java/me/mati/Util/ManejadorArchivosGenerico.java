@@ -60,8 +60,8 @@ public class ManejadorArchivosGenerico {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < unaPalabra.length(); i++) {
 			char caracter = unaPalabra.charAt(i);
-			if ((caracter >= 'A' && caracter <= 'Z') ||
-					(caracter >= 'a' && caracter <= 'z'))
+			if (((caracter >= 'A' && caracter <= 'Z') || caracter == 'Ñ') ||
+					(caracter >= 'a' && caracter <= 'z')  || caracter == 'ñ')
 				sb.append(caracter);
 		}
 		

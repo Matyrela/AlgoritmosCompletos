@@ -100,6 +100,7 @@ public class TElementoAB<T> implements IElementoAB<T> {
     @Override
     public boolean insertar(TElementoAB<T> elemento) {
         int comp = elemento.getEtiqueta().compareTo(getEtiqueta());
+
         if(comp == 0){
             return false;
         }else if (comp < 0){
@@ -188,7 +189,7 @@ public class TElementoAB<T> implements IElementoAB<T> {
 
     @Override
     public T getDatos() {
-        return null;
+        return this.datos;
     }
 
     @Override

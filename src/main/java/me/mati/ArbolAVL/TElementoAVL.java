@@ -97,6 +97,7 @@ public class TElementoAVL<T> extends TElementoAB<T> {
 
     private TElementoAVL<T> balancear(TElementoAVL<T> nodoActual) {
         int balance = obtenerBalance();
+
         if (balance <= -2) {
             if (getHijoIzq() != null) {
                 if (getHijoIzq().obtenerBalance() <= -1) {

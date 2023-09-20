@@ -33,6 +33,18 @@ public class TLinkedList<T> implements ILinkedList<T> {
     }
 
     @Override
+    public void setPrimero(IElementoLL unNodo) {
+        if(unNodo == null) return;
+
+        if(cabeza == null) {
+            cabeza = unNodo;
+        }else {
+            unNodo.setSiguiente(cabeza);
+            cabeza = unNodo;
+        }
+    }
+
+    @Override
     public IElementoLL buscar(Comparable clave) {
         if(cabeza == null) return null;
         if(clave == null) return null;
@@ -99,25 +111,61 @@ public class TLinkedList<T> implements ILinkedList<T> {
         return cantElementos;
     }
 
+    public int cantElementosON(){
+        if(cabeza == null) return 0;
+
+        IElementoLL aux = cabeza;
+        int cont = 0;
+
+        while (aux != null){
+            cont++;
+            aux = aux.getSiguiente();
+        }
+        return cont;
+    }
+
     @Override
     public boolean esVacia() {
         return (cantElementos == 0);
     }
 
     @Override
-    public void setPrimero(IElementoLL unNodo) {
-        if(unNodo == null) return;
+    public String toString() {
+        return imprimir();
+    }
 
-        if(cabeza == null) {
-            cabeza = unNodo;
-        }else {
-            unNodo.setSiguiente(cabeza);
-            cabeza = unNodo;
+    public void insertarOrdenado(TElementoLL<T> nuevoNodo) {
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+        } else if (cabeza.getSiguiente() == null && cabeza != null) {
+            if (cabeza.getEtiqueta().compareTo(nuevoNodo.getEtiqueta()) > 0) {
+                nuevoNodo.setSiguiente(cabeza);
+                cabeza = nuevoNodo;
+            } else {
+                cabeza.setSiguiente(nuevoNodo);
+            }
+        } else if (cabeza.compareTo(nuevoNodo.getEtiqueta()) > 0) {
+            nuevoNodo.setSiguiente(cabeza);
+            cabeza = nuevoNodo;
+        } else {
+            IElementoLL<T> aux = cabeza.getSiguiente();
+            IElementoLL<T> auxAnterior = cabeza;
+
+            while (aux != null) {
+                if (aux.getEtiqueta().compareTo(nuevoNodo.getEtiqueta()) > 0) {
+                    auxAnterior.setSiguiente(nuevoNodo);
+                    nuevoNodo.setSiguiente(aux);
+                    return;
+                }
+                auxAnterior = aux;
+                aux = aux.getSiguiente();
+            }
+            auxAnterior.setSiguiente(nuevoNodo);
         }
     }
 
-    @Override
-    public String toString() {
-        return imprimir();
+    public void insertarOrdenado(Comparable etiqueta, T datos) {
+        TElementoLL e = new TElementoLL(etiqueta, datos);
+        insertarOrdenado(e);
     }
 }
